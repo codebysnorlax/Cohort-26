@@ -4,5 +4,5 @@ In this repository, you will get my entire jorney as a software developer. From 
 ## january Progress
 ### PeerReview
 * HTML Resume Page Assignment
-  - code -> [click me](/January/PeerReviews/HTML-ResumePage/README.md)
+  - code -> [click me](/January/PeerReviews/HTML-ResumePage/index.html)
   - live preview [click me](https://htmlresumepageassignment.netlify.app/)
