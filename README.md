@@ -1,21 +1,2 @@
-https://chaiaurcode.notion.site/Web-Development-Cohort-2026-2c8ab1b6b9c68039b2bbc97db70f97fe
-
-dig . ns
-dig com ns
-dig google.com ns
-dig google.com
-record types
-A record
-CNAME
-MX | mx record
-NS
-----------
-Fault Tolerance 
-- - TASK - -
-DNS - Explain all Records NS, A, AAA, TXT, CNAME, MX
-TCP - Internals 3 WAY ACK Explained
-TCP VS UDP and TCP vs HTTP
-TCP Packet structure
-HTTP and TCP together
-Just for Study - Why IPV6 Exists and why there is no IP V 5
-524
+# Hi i'm Ravi Ranjan Sharma
+In this repository, you will get my entire jorney as a software developer. From the very beginning to the present day, I have documented my progress, challenges, and achievements. This repository serves as a comprehensive record of my growth and development in the field of software engineering. with Chai Code Cohort 26.
