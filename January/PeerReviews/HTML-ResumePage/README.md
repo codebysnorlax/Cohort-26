@@ -1,6 +1,11 @@
 # HTML Resume Page Assignment
 
-Done [Click me](https://htmlresumepageassignment.netlify.app/)
+Live link [Click me](https://htmlresumepageassignment.netlify.app/)
+
+![image](/assets/image/jan/janhtml/HTML%20Resume%20Page%20Assignment_page-0001.jpg)
+more pic [here](/assets/image/jan/janhtml/)
+
+# ToDo
 ## Timeline
  - Start: 27 Jan 2026, 1:30 pm
  - Due: 30 Jan 2026, 8:59 pm
@@ -12,11 +17,7 @@ Done [Click me](https://htmlresumepageassignment.netlify.app/)
 Build a single-page resume website in HTML that looks like the provided layout. It should include sections like header/name, about, skills list, experience table, projects, education table, and contact details. The final output can be showcased in various formats:
 
 - Hosted website / Output screenshot
-
 - Public GitHub repository
-
-preview image
-![HTML Resume Page Preview](/assets/image/jan/html.jpeg)
 
 Keep the structure clean and readable. Focus on proper HTML tags (headings, paragraphs, lists, tables, and sections) and match the overall layout as closely as possible.
 
