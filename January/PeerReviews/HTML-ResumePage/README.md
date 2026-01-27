@@ -14,7 +14,7 @@ Build a single-page resume website in HTML that looks like the provided layout. 
 - Public GitHub repository
 
 preview image
-![HTML Resume Page Preview](/assets/image/jan/)
+![HTML Resume Page Preview](/assets/image/jan/html.jpeg)
 
 Keep the structure clean and readable. Focus on proper HTML tags (headings, paragraphs, lists, tables, and sections) and match the overall layout as closely as possible.
 
