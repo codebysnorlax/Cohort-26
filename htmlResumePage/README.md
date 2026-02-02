@@ -1,10 +1,10 @@
 # HTML Resume Page Assignment
 
 - Live link [Click me](https://htmlresumepageassignment.netlify.app/)
-- code [click me](/January/PeerReviews/HTML-ResumePage/index.html)
+- code [click me](/htmlResumePage/index.html)
 
-![image](/assets/image/jan/janhtml/HTML%20Resume%20Page%20Assignment_page-0001.jpg)
-more pic [here](/assets/image/jan/janhtml/)
+![image](/htmlResumePage/assets/pics/HTML%20Resume%20Page%20Assignment_page-0001.jpg)
+more pic [here](/htmlResumePage/assets/pics)
 
 # ToDo
 ## Timeline

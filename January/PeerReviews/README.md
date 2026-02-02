@@ -1,1 +1,0 @@
-This folder contains peer review documents for the month of January. Each document includes feedback and evaluations provided by peers on various projects and assignments completed during this period.
