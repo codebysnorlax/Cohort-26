@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
+    <header class="header-sticky">
       <nav class="nav-bar">
         <div class="logo">
           <img src="assets/logo/cursor.svg" alt="logo" />
@@ -33,89 +33,146 @@
           Cursor is the best way to code with AI.
         </h1>
         <div class="hero-actions">
-          <button class="btn-linux btn">Download for Linux <p class="down-arrow">⤓</p></button>
+          <button class="btn-linux btn">
+            Download for Linux
+            <p class="down-arrow">⤓</p>
+          </button>
         </div>
       </section>
       <!-- this section for 1 bg image with 2 ide image here comes 3 image -->
       <section class="Primary-hero">
         <div class="hero-media">
           <div class="hero-bg-image">
-            <img src="asrsets/backgrounds/image.webp" alt="bg-img" />
-            <div class="hero-image1"><img src="" alt="ide" /></div>
-            <div class="hero-image2"><img src="" alt="ide" /></div>
+            <img
+              class="bg-img1"
+              src="assets/backgrounds/image.webp"
+              alt="bg-img"
+            />
+            <div class="img-img1">
+              <img class="ide-img1" src="assets/Ide/hero1.png" alt="ide" />
+            </div>
+            <div class="img-img2">
+              <img class="ide-img2" src="assets/Ide/hero2.png" alt="ide" />
+            </div>
           </div>
         </div>
       </section>
       <!-- This section for multiple cards here comes brands logos -->
       <section class="trusted-by">
         <div>
-          <p>Trusted every day by millions of professional developers.</p>
+          <h2 class="trust-text">Trusted every day by millions of professional developers.</h2>
         </div>
         <div>
           <ul>
-            <li><img src="" alt="Stripe" /></li>
-            <li><img src="" alt="OpenAI" /></li>
-            <li><img src="" alt="Linear" /></li>
-            <li><img src="" alt="Nvidia" /></li>
-            <li><img src="" alt="Figma" /></li>
-            <li><img src="" alt="Ramp" /></li>
-            <li><img src="" alt="Adobe" /></li>
+            <li class="logo-1"><img class="brand-logo" src="assets/logo/Stripe.svg" alt="Stripe" /></li>
+            <li class="logo-2"><img class="brand-logo" src="assets/logo/OpenAI.svg" alt="OpenAI" /></li>
+            <li class="logo-3"><img class="brand-logo" src="assets/logo/Linear.svg" alt="Linear" /></li>
+            <li class="logo-4"><img class="brand-logo" src="assets/logo/datadog.svg" alt="DaTaDog" /></li>
+            <li class="logo-5"><img class="brand-logo" src="assets/logo/nvidia.svg" alt="Nvidia" /></li>
+            <li class="logo-6"><img class="brand-logo" src="assets/logo/figma.svg" alt="Figma" /></li>
+            <li class="logo-7"><img class="brand-logo" src="assets/logo/ramp.svg" alt="Ramp" /></li>
+            <li class="logo-8"><img class="brand-logo" src="assets/logo/adobe.svg" alt="Adobe" /></li>
           </ul>
         </div>
       </section>
       <!-- This section for 2nd card here comes 2 image and text on left side -->
       <section class="Secondary-hero">
         <div class="hero-media2">
-          <h3></h3>
-          <p></p>
-          <a href=""></a>
-          <div><img src="" alt="bg-img" /></div>
-          <div><img src="" alt="ide" /></div>
+          <div class="text-content">
+            <h3 class="text-agent">Agent turns ideas into code</h3>
+            <p class="mute-text">A human-AI programmer, orders of magnitude more effective than any developer alone.</p>
+            <a href="#">Learn about Agent →</a>
+          </div>
+          <div class="image-content">
+            <div class="bg-img-wrapper"><img src="assets/backgrounds/image2.webp" alt="bg-img" /></div>
+            <div class="ide-img-wrapper"><img src="assets/Ide/hero3.png" alt="ide" /></div>
+          </div>
         </div>
       </section>
-      <!-- This section for 3rd card comes with 2 image and text on right side -->
-      <section class="Tertiary-hero">
-        <div class="hero-media3">
-          <div><img src="" alt="bg-img" /></div>
-          <div><img src="" alt="ide" /></div>
-          <h3></h3>
-          <p></p>
-          <a href=""></a>
+
+            <section class="Secondary-hero">
+        <div class="hero-media2">
+         
+          <div class="image-content">
+            <div class="bg-img-wrapper"><img src="assets/backgrounds/gray.webp" alt="bg-img" /></div>
+            <div class="ide-img-wrapper"><img src="assets/Ide/hero4.png" alt="ide" /></div>
+          </div>
+          <div class="text-content">
+            <h3 class="text-agent">Magically accurate autocomplete</h3>
+            <p class="mute-text">Our custom Tab model predicts your next action with striking speed and precision.</p>
+            <a href="#">Learn about Tab →</a>
+          </div>
         </div>
       </section>
-      <!-- This section for 4th card here comes 3 image and text on left -->
-      <section class="Quaternary-hero">
-        <h3></h3>
-        <p></p>
-        <a href=""></a>
-        <div class="hero-media3">
-          <div><img src="" alt="bg-img" /></div>
-          <div><img src="" alt="ide" /></div>
-          <div><img src="" alt="ide" /></div>
+
+      <section class="Secondary-hero">
+        <div class="hero-media2">
+          <div class="text-content">
+            <h3 class="text-agent">Everywhere software gets built</h3>
+            <p class="mute-text">Cursor is in GitHub reviewing your PRs, a teammate in Slack, and anywhere else you work.</p>
+            <a href="#">Learn about Cursor's ecosystem →</a>
+          </div>
+          <div class="image-content">
+            <div class="bg-img-wrapper"><img src="assets/backgrounds/hero3.webp" alt="bg-img" /></div>
+            <div class="ide-img-wrapper mov-1"><img src="assets/Ide/hero5.png" alt="ide" /></div>
+            <div class="ide-img-wrapper mov-2"><img src="assets/Ide/hero6.png" alt="ide" /></div>
+          </div>
         </div>
       </section>
+
       <section class="middle-text">
-        <h3></h3>
+        <h3 class="build-text">The new way to build software.</h3>
       </section>
       <section class="comments-cards">
+        <!-- User comments card 1 -->
+      <div class="user-cmt-wrap">
         <div class="cmt-card">
-          <img src="" alt="people">
+          <p class="user-cmt">It was night and day from one batch to another, adoption went from single digits to over 80%. It just spread like wildfire, all the best builders were using Cursor.</p>
+          <img class="user-img" src="assets/people/person1.png" alt="people" />
+          <p class="user-name">Diana Hu</p>
+          <a class="user-tag" href="#">General Partner, Y Combinator</a>
         </div>
+        <!-- User comments card 2 -->
         <div class="cmt-card">
-          <img src="" alt="people">
+          <p class="user-cmt">The most useful AI tool that I currently pay for, hands down, is Cursor. It's fast, autocompletes when and where you need it to, handles brackets properly, sensible keyboard shortcuts, bring-your-own-model... everything is well put together.</p>
+          <img class="user-img" src="assets/people/person2.png" alt="people" />
+          <p class="user-name">shadcn</p>
+          <a class="user-tag" href="#">Creator of shadcn/ui</a>
         </div>
+        <!-- User comments card 3 -->
         <div class="cmt-card">
-          <img src="" alt="people">
+          <p class="user-cmt">The best LLM applications have an autonomy slider: you control how much independence to give the AI. In Cursor, you can do Tab completion, Cmd+K for targeted edits, or you can let it rip with the full autonomy agentic version.</p>
+          <img class="user-img" src="assets/people/person3.png" alt="people" />
+          <p class="user-name">Andrej Karpathy</p>
+          <a class="user-tag" href="#">CEO, Eureka Labs</a>
         </div>
+        <!-- User comments card 4 -->
         <div class="cmt-card">
-          <img src="" alt="people">
+          <p class="user-cmt">Cursor quickly grew from hundreds to thousands of extremely enthusiastic Stripe employees. We spend more on R&D and software creation than any other undertaking, and there's significant economic outcomes when making that process more efficient and productive.</p>
+          <img class="user-img" src="assets/people/person4.png" alt="people" />
+          <p class="user-name">Patrick Collison</p>
+          <a class="user-tag" href="#">Co‑Founder & CEO, Stripe</a>
         </div>
+        <!-- User comments card 5 -->
         <div class="cmt-card">
-          <img src="" alt="people">
+          <p class="user-cmt">It's official. 
+
+          I hate vibe coding. 
+          I love Cursor tab coding. 
+
+          It's wild.</p>
+          <img class="user-img" src="assets/people/person5.png" alt="people" />
+          <p class="user-name">ThePrimeagen</p>
+          <a class="user-tag" href="#">@ThePrimeagen</a>
         </div>
+        <!-- User comments card 6 -->
         <div class="cmt-card">
-          <img src="" alt="people">
+          <p class="user-cmt">It's definitely becoming more fun to be a programmer. It's less about digging through pages and more about what you want to happen. We are at the 1% of what's possible, and it's in interactive experiences like Cursor where models like GPT-5 shine brightest.</p>
+          <img class="user-img" src="assets/people/person6.png" alt="people" />
+          <p class="user-name"></p>
+          <a class="user-tag" href="#">President, OpenAI</a>
         </div>
+      </div>
       </section>
       <section class="three-card">
         <h3></h3>
@@ -123,19 +180,19 @@
           <h4></h4>
           <p></p>
           <a href=""></a>
-          <img src="" alt="img-card">
+          <img src="" alt="img-card" />
         </div>
         <div>
           <h4></h4>
           <p></p>
           <a href=""></a>
-          <img src="" alt="img-card">
+          <img src="" alt="img-card" />
         </div>
         <div>
           <h4></h4>
           <p></p>
           <a href=""></a>
-          <img src="" alt="img-card">
+          <img src="" alt="img-card" />
         </div>
       </section>
       <section class="Changelog">
@@ -146,22 +203,25 @@
         <a href=""></a>
       </section>
       <!-- For middle text -->
-       <section class="text-hero">
-        <h1>Cursor is an applied team focused <br> on building the future of coding.</h1>
+      <section class="text-hero">
+        <h1>
+          Cursor is an applied team focused <br />
+          on building the future of coding.
+        </h1>
         <button class="">Join us</button>
-       </section>
-       <section>
-        <img src="" alt="team-img">
-       </section>
-       <section class="highlights">
+      </section>
+      <section>
+        <img src="" alt="team-img" />
+      </section>
+      <section class="highlights">
         <div></div>
         <div></div>
         <div></div>
-       </section>
-       <section class="try-now">
+      </section>
+      <section class="try-now">
         <h1>Try Cursor now.</h1>
         <button>Download for linux</button>
-       </section>
+      </section>
     </main>
     <footer></footer>
   </body>

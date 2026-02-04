@@ -32,13 +32,13 @@ body {
   background-color: var(--c-main);
   color: var(--c-text);
 }
-img,
+/* img,
 svg,
 webp,
 png {
   min-width: 100%;
   display: block;
-}
+} */
 
 .wrapper {
   width: calc(100% - 40px);
@@ -52,14 +52,20 @@ png {
 
 /* navbar */
 
-.nav-bar {
+.header-sticky {
   position: sticky;
   top: 0;
+  background-color: var(--c-main);
+  z-index: 100;
+}
+
+.nav-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: calc(100% - 177.5px);
   margin-inline: auto;
+  padding-block: 10px;
 }
 .nav-links {
   display: flex;
@@ -129,26 +135,191 @@ png {
   font-weight: 500;
   font-size: 15px;
 }
-.hero{
-  padding-block-start:  calc(1rem*1.4*5);
+.hero {
+  padding-block-start: calc(1rem * 1.4 * 5);
 }
-section{
-  padding: calc(1rem*1.4*3) calc(calc(10rem/16)*2);
+section {
+  padding: calc(calc(10rem / 16) * 2);
 }
 
-.hero-h1{
+.hero-h1 {
   font-size: 1.625rem;
-    line-height: 1.25;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--c-button)
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--c-button);
 }
-.space-btn{
-margin-bottom: calc(1rem*1.4)
+.space-btn {
+  margin-bottom: calc(1rem * 1.4);
 }
 /* ----------------------------------------- */
-.hero-media{
-  background: red;
-  height: 100%;
+.hero-media {
+  position: relative;
   width: 100%;
+  aspect-ratio: 16/9;
+}
+.hero-bg-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.bg-img1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.img-img1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-70%, -50%);
+  width: fit-content;
+}
+.ide-img1 {
+  width: 1008px;
+  max-width: 140%;
+  border-radius: 13px;
+}
+.img-img2 {
+  position: absolute;
+  bottom: 3%;
+  left: 66%;
+}
+.ide-img2 {
+  width: 400px;
+  max-width: 100%;
+  border-radius: 13px;
+}
+.img-img1:hover {
+  z-index: 1;
+}
+/* ---------------------------- */
+.trust-text {
+  color: var(--c-button);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: calc(1rem * 1.4);
+  text-align: center;
+}
+.trusted-by ul {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(8, 1fr);
+  list-style: none;
+  gap: 1rem;
+  align-items: center;
+}
+.brand-logo {
+  width: 80px;
+  height: auto;
+}
+
+.trusted-by ul li {
+  background: var(--c-card);
+  height: 6.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+/* ------------------------------------ */
+
+a {
+  text-decoration: none;
+  color: var(--c-link);
+}
+
+/* Secondary Hero Section */
+.Secondary-hero {
+  padding: calc(1rem * 1.4 * 3);
+}
+.hero-media2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--c-card);
+  padding: 15px 30px 15px 15px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.text-content {
+  flex: 0 0 35%;
+}
+.image-content {
+  flex: 0 0 65%;
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.bg-img-wrapper {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+.bg-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.ide-img-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.ide-img-wrapper img {
+  width: 483px;
+  max-width: 124% 483.25px;
+  border-radius: 4px;
+}
+.text-agent {
+  color: var(--c-button);
+}
+.mute-text {
+  color: var(--c-text);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+.mov-1 {
+  top: 41%;
+  left: 38%;
+}
+.mov-2 {
+  top: 60%;
+  left: 60%;
+}
+.build-text {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--c-button);
+  text-align: center;
+}
+
+.user-cmt-wrap{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  gap: 10px;
+}
+.cmt-card{
+  border-radius: 4px;
+  padding: 10px;
+  background: var(--c-card);
+}
+.user-tag{
+  color: var(--c-mute-text);
+}
+.user-img{
+  display: block;
 }
