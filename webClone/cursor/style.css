@@ -445,3 +445,73 @@ a {
 .high-card p{
   color: var(--c-mute-text);
 }
+
+.try-now {
+  padding: 200px 20px;
+  margin: 0;
+  width: 1310px;
+  height: 300px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.try-now h1 {
+  color: var(--c-button);
+  font-size: 4.5rem;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -.03em;
+  margin: 0;
+}
+
+footer {
+  background-color: var(--c-card);
+  padding: 80px 20px 40px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column h4 {
+  color: var(--c-mute-text);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  color: var(--c-btn-white);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.footer-column ul li a:hover {
+  color: var(--c-button);
+}
+
+.copyright {
+  margin-top: 40px;
+  padding-top: 20px;
+  color: var(--c-mute-text);
+  font-size: 0.875rem;
+}
