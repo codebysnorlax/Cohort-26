@@ -14,6 +14,7 @@
   --c-button: hsl(0, 3%, 93%);
   --c-btn-white: hsl(0, 3%, 93%);
   --c-link: hsl(19, 100%, 48%);
+  --c-footer: hsla(60, 16%, 9%, 0);
   /* button */
   --button-padding-default: 0.78em 1.35em 0.8em;
   --button-padding-md-sm: 0.6em 1.25em 0.62em;
@@ -417,4 +418,30 @@ a {
   border-radius: 99px;
   border: 1px solid var(--c-mute-text);
   font-weight: 300;
+}
+.high-card{
+  padding: 1rem;
+  background-color: #201e18;
+  max-width: 620px;
+  text-align: left;
+  border-radius: 8px;
+}
+.highlights{
+  background-color: #1b1913;
+  padding: 20px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.high-text{
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: .005;
+  color: var(--c-btn-white);
+}
+.high-card p{
+  color: var(--c-mute-text);
 }
