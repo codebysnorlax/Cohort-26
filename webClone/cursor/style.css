@@ -515,3 +515,25 @@ footer {
   color: var(--c-mute-text);
   font-size: 0.875rem;
 }
+
+/* hey in T-class sir tought about media quary so i add here */
+
+@media (max-width: 1314px) {
+  html, body {
+    background: blue !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  body * {
+    display: none !important;
+  }
+  body::before {
+    content: "Oops, the layout broke :( Please view this in full width. A minimum width of 1317px is required." !important;
+    display: block !important;
+    color: white !important;
+    font-size: 24px !important;
+  }
+}
