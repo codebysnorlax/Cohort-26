@@ -349,10 +349,10 @@ a {
   font-size: 1.625rem;
   line-height: 1.25;
   font-weight: 400;
-  letter-spacing: -.0125em;
+  letter-spacing: -0.0125em;
 }
 .three-card-wrap {
-  padding: 44.8px 0px;
+  padding: 44.8px 20px;
 }
 .img-card-wrap {
   display: flex;
@@ -361,7 +361,60 @@ a {
 .three-card-bg {
   background-color: var(--c-card);
   height: 520.084px;
-  width: 391.656px;
-  padding: 15.900px 17.500px 17.500px 17.500px;
+  width: 100%;
+  max-width: 416.656px;
+  padding: 15.9px 17.5px 1rem 17.5px;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.three-card-bg img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+  align-self: flex-end;
+}
+.Changelog {
+  padding: 44.8px 20px;
+}
+.changelog-wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.changelog-item {
+  background-color: var(--c-card);
+  padding: 20px;
+  border-radius: 4px;
+}
+.changelog-item h4 {
+  color: var(--c-button);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.changelog-item .date {
+  color: var(--c-mute-text);
+  font-size: var(--text-sm);
+  margin-bottom: 0.5rem;
+}
+.changelog-item p:last-child {
+  color: var(--c-text);
+  margin: 0;
+}
+.changelog-link {
+  color: var(--c-link);
+  font-size: 1rem;
+}
+.capsule {
+  margin-right: 10px;
+  padding: 1px 11px;
+  border-radius: 99px;
+  border: 1px solid var(--c-mute-text);
+  font-weight: 300;
 }
