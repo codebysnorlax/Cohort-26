@@ -15,4 +15,4 @@ In this repository, you will get my entire jorney as a software developer. From 
       - live preview [click me](https://cohort26cursorclone.netlify.app/)
   - *Mintlify*
       - code -> [click me](webClone/mintlify/index.html)
-      - live preview [click me]()
+      - live preview [click me](https://cohort26mintlifyclone.netlify.app/)
