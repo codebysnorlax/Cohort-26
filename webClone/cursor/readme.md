@@ -15,41 +15,61 @@ Focus on making your page look as close as possible to the original in terms of:
 ## Sections to Build
 
 ### 1. Top Navigation Bar
-- Logo, nav links, primary CTA
-- Dark background
+- Logo, nav links (Features, Enterprise, Pricing, Resources), primary CTA
+- Dark background with Sign in and Download buttons
 
 ### 2. Hero Section
-- Main headline, description, CTA
-- Large product screenshot
+- Main headline about AI-powered coding productivity
+- Download for Linux button with arrow icon
+- Tagline: "Built to make you extraordinarily productive, Cursor is the best way to code with AI"
 
-### 3. Trusted By / Logos
-- Row of company logos
+### 3. Primary Hero Media
+- Background image with two overlaid IDE screenshots
+- Visual demonstration of the product interface
 
-### 4. Feature Sections (3 blocks)
-- Two-column layout (text + image)
-- Alternate image/text positions
+### 4. Trusted By / Company Logos
+- Company logos: Stripe, OpenAI, Linear, Datadog, Nvidia, Figma, Ramp, Adobe
+- Text: "Trusted every day by millions of professional developers"
 
-### 5. Feature Cards Section
-- Section title
-- Grid of 3–4 cards
+### 5. Feature Sections (3 blocks)
+- Agent feature: AI turns ideas into code with learn more link
+- Autocomplete feature: Tab model for predictions with learn more link
+- Ecosystem feature: Integration with GitHub, Slack, and other tools
+- Two-column layout alternating text and images
 
-### 6. Testimonials
-- Quote cards with name and role
+### 6. Middle Section
+- Large text: "The new way to build software"
 
-### 7. Use Cases / Stories
-- Cards with image + short text
+### 7. Testimonials
+- 6 testimonial cards with quotes, user images, names and roles
+- Users: Diana Hu (Y Combinator), shadcn, Andrej Karpathy, Patrick Collison (Stripe), ThePrimeagen, OpenAI President
 
-### 8. Changelog / Updates
-- List of updates with date
+### 8. Feature Cards Section
+- Title: "Stay on the frontier"
+- 3 cards: Model selection, Codebase understanding, Enterprise development
+- Each card has description, link, and accompanying image
 
-### 9. Team / About
-- Large image + short description + CTA
+### 9. Changelog / Updates
+- Title: "Changelog"
+- Version updates with dates and descriptions
+- Link to see more updates
 
-### 10. Final CTA
-- Big heading + single button
+### 10. Team / About
+- Text about Cursor being an applied research team
+- Large team photo background
+- "Join us" call-to-action link
 
-### 11. Footer
-- Multi-column links and company info
+### 11. Highlights Section
+- 3 article cards with titles, descriptions, and publication info
+- Topics: Cursor 2.0, Tab model improvements, MoE training optimization
+
+### 12. Final CTA
+- "Try Cursor now" heading
+- Download for Linux button
+
+### 13. Footer
+- 5 columns: Product, Resources, Company, Legal, Connect
+- Copyright notice and SOC 2 certification
 
 ## Constraints
 
