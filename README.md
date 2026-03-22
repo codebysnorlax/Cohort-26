@@ -16,3 +16,6 @@ In this repository, you will get my entire jorney as a software developer. From 
   - *Mintlify*
       - code -> [click me](webClone/mintlify/index.html)
       - live preview [click me](https://cohort26mintlifyclone.netlify.app/)
+* JS Build Your Own ChaiTailwind
+  - *code* -> [click me](ChaiTailwind/chaiTailwind.js)
+  - *live preview* -> [click me](https://chaitailwindjs.netlify.app/)

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChaiTailwind — Build Your Own CSS Framework</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: 'Segoe UI', system-ui, sans-serif; }
+      .badge { display: inline-block; }
+      
+      code { font-family: 'Courier New', monospace; }
+    </style>
+  </head>
+  <body class="chai-bg-gray-950 chai-min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="chai-bg-gray-900 chai-border-gray chai-flex chai-items-center chai-justify-between chai-px-6 chai-py-3">
+      <span class="chai-text-amber chai-font-bold chai-text-24">☕ ChaiTailwind</span>
+      <div class="chai-flex chai-gap-6">
+        <a href="https://github.com/codebysnorlax" class="chai-text-gray chai-td-none chai-font-semibold">GitHub</a>
+        <a href="" class="chai-text-gray chai-td-none chai-font-semibold">Blog</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="chai-py-16 chai-px-4 chai-text-center">
+      <div class="chai-max-w-4xl chai-mx-auto">
+        <span class="badge chai-bg-gray-800 chai-text-amber chai-border-gray chai-rounded-full chai-px-4 chai-py-3 chai-text-14 chai-font-semibold chai-tracking-wide chai-uppercase chai-mb-6">
+          Chai Code · Cohort 26
+        </span>
+        <h1 class="chai-text-white chai-text-48 chai-font-bold chai-mb-4">
+          Build Your Own<br/>
+          <span class="chai-text-amber">CSS Framework</span>
+        </h1>
+        <p class="chai-text-gray chai-text-18 chai-line-relaxed chai-mb-8 chai-max-w-4xl chai-mx-auto">
+          ChaiTailwind is a lightweight, utility-first CSS framework built from scratch using vanilla JavaScript — no dependencies, no build tools, just pure JS parsing class names and injecting styles.
+        </p>
+        <div class="chai-flex chai-justify-center chai-gap-4 chai-flex-wrap">
+          <a href="https://github.com/codebysnorlax/Cohort-26.git" class="btn-primary chai-bg-amber chai-text-black chai-font-bold chai-px-6 chai-py-3 chai-rounded-8 chai-td-none chai-cursor-pointer">
+            View Source
+          </a>
+          <a href="https://codebysnorlax.hashnode.dev" class="chai-bg-gray-800 chai-text-white chai-border-gray chai-px-6 chai-py-3 chai-rounded-8 chai-td-none chai-cursor-pointer chai-font-semibold">
+            Read Blog
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="chai-py-12 chai-px-4">
+      <div class="chai-max-w-4xl chai-mx-auto">
+        <h2 class="chai-text-white chai-text-28 chai-font-bold chai-text-center chai-mb-8">How It Works</h2>
+        <div class="chai-bg-gray-900 chai-border-gray chai-rounded-8 chai-p-8 chai-shadow chai-mb-6">
+          <p class="chai-text-gray chai-mb-4 chai-text-16">1. Add utility classes to any HTML element:</p>
+          <code class="chai-bg-gray-800 chai-text-amber chai-block chai-p-4 chai-rounded-8 chai-text-14">
+            &lt;div class="chai-flex chai-items-center chai-gap-4 chai-bg-#1a1a24 chai-rounded-8"&gt;
+          </code>
+        </div>
+        <div class="chai-bg-gray-900 chai-border-gray chai-rounded-8 chai-p-8 chai-shadow">
+          <p class="chai-text-gray chai-mb-4 chai-text-16">2. The JS engine scans every element, reads <code class="chai-text-amber">chai-*</code> classes, and injects the matching CSS directly via <code class="chai-text-amber">style.cssText</code>:</p>
+          <code class="chai-bg-gray-800 chai-text-amber chai-block chai-p-4 chai-rounded-8 chai-text-14">
+            elem.style.cssText += chaiTailwind[className];
+          </code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features grid -->
+    <section class="chai-py-12 chai-px-4">
+      <div class="chai-max-w-4xl chai-mx-auto">
+        <h2 class="chai-text-white chai-text-28 chai-font-bold chai-text-center chai-mb-8">What's Supported</h2>
+        <div class="chai-flex chai-flex-wrap chai-gap-4">
+
+          <div class="card chai-bg-gray-900 chai-border-gray chai-rounded-8 chai-p-8 chai-shadow" style="flex: 1 1 220px;">
+            <h3 class="chai-text-white chai-font-semibold chai-mb-2">Dynamic Values</h3>
+            <p class="chai-text-gray chai-text-14">Use <code class="chai-text-amber">chai-p-4</code>, <code class="chai-text-amber">chai-text-20</code>, <code class="chai-text-amber">chai-rounded-12</code> — values computed at runtime.</p>
+          </div>
+
+          <div class="card chai-bg-gray-900 chai-border-gray chai-rounded-8 chai-p-8 chai-shadow" style="flex: 1 1 220px;">
+            <h3 class="chai-text-white chai-font-semibold chai-mb-2">Color Utilities</h3>
+            <p class="chai-text-gray chai-text-14">Background and text colors via <code class="chai-text-amber">chai-bg-*</code> and <code class="chai-text-amber">chai-text-*</code> with any CSS color value.</p>
+          </div>
+
+          <div class="card chai-bg-gray-900 chai-border-gray chai-rounded-8 chai-p-8 chai-shadow" style="flex: 1 1 220px;">
+            <h3 class="chai-text-white chai-font-semibold chai-mb-2">Layout</h3>
+            <p class="chai-text-gray chai-text-14">Flexbox, positioning, width, height, gap — all the essentials for building real layouts.</p>
+          </div>
+
+          <div class="card chai-bg-gray-900 chai-border-gray chai-rounded-8 chai-p-8 chai-shadow" style="flex: 1 1 220px;">
+            <h3 class="chai-text-white chai-font-semibold chai-mb-2">Zero Dependencies</h3>
+            <p class="chai-text-gray chai-text-14">Pure vanilla JS. Drop one <code class="chai-text-amber">&lt;script&gt;</code> tag and it just works — no npm, no bundler.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="chai-py-8 chai-px-4 chai-text-center chai-border-gray" style="border-top: 1px solid #2a2a3a; margin-top: 32px;">
+      <p class="chai-text-gray chai-text-14">
+        Built by <span class="chai-text-amber chai-font-semibold">Ravi Ranjan Sharma</span> · Chai Code Cohort 26
+      </p>
+    </footer>
+
+    <script src="chaiTailwind.js"></script>
+  </body>
+</html>
