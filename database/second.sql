@@ -91,3 +91,36 @@ page 2: (2-1)* 15 = 15 -- offset 15 means skip the first 15 records and start fr
 page 3: (3-1)* 15 = 30  -- offset 30 means skip the first 30 records and start from the 31st record
 
 
+! Modifying data in runtime
+
+SELECT name, nickname, auction_price_crores, 
+(auction_price_crores * 100) -- this will calculate the price in lakhs by multiplying the auction price in crores by 100 (since 1 crore = 100 lakhs)
+AS price_in_lakhs -- this will create a new column price_in_lakhs which is calculated by multiplying auction_price_crores by 100
+FROM ipl_players;
+
+SELECT name, nickname, auction_price_crores,
+    (auction_price_crores + 2) AS new_price
+FROM 
+    ipl_players;
+
+
+-- ! Now you can get distinct value
+
+SELECT DISTINCT role FROM ipl_players; -- this will return the unique roles of players in the ipl_players table
+SELECT DISTINCT team FROM ipl_players; -- this will return the unique teams of players in the ipl_players table
+
+
+
+
+------------------------------------------------------------------------------------
+-- ! DQL 
+-- ? dql stands for Data Query Language, which is a subset of SQL used to query and retrieve data from a database. The main command in DQL is SELECT, which allows you to specify the columns you want to retrieve and the conditions for filtering the data. DQL is used to perform read operations on the database, such as selecting specific records, sorting data, and applying aggregate functions. It does not modify the data in any way; it only retrieves and displays it based on the specified criteria.
+-- DQL is essential for extracting meaningful information from a database and is commonly used in various applications, including data analysis, reporting, and application development. It allows users to interact with the database and retrieve the data they need without altering the underlying data structure.
+
+-- ! DDL 
+-- ? DDL stands for Data Definition Language, which is a subset of SQL used to define and manage database structures. DDL commands are used to create, alter, and drop database objects such as tables, indexes, views, and schemas. The main DDL commands include:
+-- 1. CREATE: Used to create new database objects, such as tables or views.
+-- 2. ALTER: Used to modify the structure of existing database objects, such as adding columns to a table or changing data types.
+-- 3. DROP: Used to delete existing database objects, such as tables or views.
+-- 4. TRUNCATE: Used to remove all  records from a table while keeping the structure intact.
+-- DDL commands are essential for defining the schema of a database and managing its structure. They allow database administrators and developers to create and modify the database according to the requirements of the application or project
