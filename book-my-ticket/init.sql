@@ -15,3 +15,4 @@ CREATE TABLE users (
 SELECT * FROM seats ORDER BY id;
 -- ! for set seats to default values
 UPDATE seats SET name = NULL, isbooked = 0;
+SELECT * FROM users;
