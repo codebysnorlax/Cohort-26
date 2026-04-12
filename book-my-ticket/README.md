@@ -1,0 +1,1 @@
+docker exec -it chai_sql_db psql -U postgres -d sql_book_my_show_db

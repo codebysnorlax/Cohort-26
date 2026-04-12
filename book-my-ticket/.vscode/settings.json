@@ -1,0 +1,20 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5433,
+            "driver": "PostgreSQL",
+            "name": "Book my Show",
+            "username": "postgres",
+            "database": "sql_book_my_show_db"
+        }
+    ],
+    "cSpell.words": [
+        "isbooked",
+        "Millis",
+        "pooler",
+        "psql"
+    ]
+}
