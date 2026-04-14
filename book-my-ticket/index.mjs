@@ -1,31 +1,24 @@
-//  CREATE TABLE seats (
-//      id SERIAL PRIMARY KEY,
-//      name VARCHAR(255),
-//      isbooked INT DEFAULT 0
-//  );
-// INSERT INTO seats (isbooked)
-// SELECT 0 FROM generate_series(1, 20);
-
 import express from "express";
 import pg from "pg";
-import { dirname } from "path";
+import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const port = process.env.PORT || 8080;
+const JWT_SECRET = process.env.JWT_SECRET;
 
-// Equivalent to mongoose connection
-// Pool is nothing but group of connections
-// If you pick one connection out of the pool and release it
-// the pooler will keep that connection open for sometime to other clients to reuse
+if (!JWT_SECRET) throw new Error("JWT_SECRET is not set in environment");
+
 const pool = new pg.Pool({
-  host: "localhost",
-  port: 5433,
-  user: "postgres",
-  password: "postgres",
-  database: "sql_book_my_show_db",
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   max: 20,
   connectionTimeoutMillis: 0,
   idleTimeoutMillis: 0,
@@ -33,53 +26,87 @@ const pool = new pg.Pool({
 
 const app = new express();
 app.use(cors());
+app.use(express.json());
+
+// Auth middleware
+function authMiddleware(req, res, next) {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.status(401).send({ error: "No token provided" });
+  try {
+    req.user = jwt.verify(token, JWT_SECRET);
+    next();
+  } catch {
+    res.status(401).send({ error: "Invalid token" });
+  }
+}
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  const filePath = resolve(join(__dirname, "index.html"));
+  if (!filePath.startsWith(__dirname)) return res.status(403).send({ error: "Forbidden" });
+  res.sendFile(filePath);
 });
-//get all seats
+
+// Register
+app.post("/register", async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) return res.status(400).send({ error: "Username and password required" });
+  try {
+    const hashed = await bcrypt.hash(password, 10);
+    await pool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [username, hashed]);
+    res.status(201).send({ message: "User registered" });
+  } catch (ex) {
+    if (ex.code === "23505") return res.status(409).send({ error: "Username already exists" });
+    res.status(500).send({ error: "Registration failed" });
+  }
+});
+
+// Login
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) return res.status(400).send({ error: "Username and password required" });
+  const safeUsername = String(username).replace(/[<>&"'/]/g, "");
+  const result = await pool.query("SELECT * FROM users WHERE username = $1", [safeUsername]);
+  const user = result.rows[0];
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.status(401).send({ error: "Invalid credentials" });
+  }
+  const token = jwt.sign({ id: user.id, username: safeUsername }, JWT_SECRET, { expiresIn: "1d" });
+  res.send({ token });
+});
+
+// Get all seats
 app.get("/seats", async (req, res) => {
-  const result = await pool.query("select * from seats"); // equivalent to Seats.find() in mongoose
+  const result = await pool.query("SELECT * FROM seats");
   res.send(result.rows);
 });
 
-//book a seat give the seatId and your name
-
-app.put("/:id/:name", async (req, res) => {
+// Book a seat — protected, uses logged-in user's name
+app.put("/:id", authMiddleware, async (req, res) => {
   try {
-    const id = req.params.id;
-    const name = req.params.name;
-    // payment integration should be here
-    // verify payment
-    const conn = await pool.connect(); // pick a connection from the pool
-    //begin transaction
-    // KEEP THE TRANSACTION AS SMALL AS POSSIBLE
+    const id = parseInt(req.params.id, 10);
+    if (isNaN(id)) return res.status(400).send({ error: "Invalid seat ID" });
+    const name = String(req.user.username).replace(/[<>&"'/]/g, "");
+    const conn = await pool.connect();
     await conn.query("BEGIN");
-    //getting the row to make sure it is not booked
-    /// $1 is a variable which we are passing in the array as the second parameter of query function,
-    // Why do we use $1? -> this is to avoid SQL INJECTION
-    // (If you do ${id} directly in the query string,
-    // then it can be manipulated by the user to execute malicious SQL code)
-    const sql = "SELECT * FROM seats where id = $1 and isbooked = 0 FOR UPDATE";
-    const result = await conn.query(sql, [id]);
-
-    //if no rows found then the operation should fail can't book
-    // This shows we Do not have the current seat available for booking
+    const result = await conn.query(
+      "SELECT * FROM seats WHERE id = $1 AND isbooked = 0 FOR UPDATE",
+      [id]
+    );
     if (result.rowCount === 0) {
-      res.send({ error: "Seat already booked" });
-      return;
+      await conn.query("ROLLBACK");
+      conn.release();
+      return res.status(409).send({ error: "Seat already booked" });
     }
-    //if we get the row, we are safe to update
-    const sqlU = "update seats set isbooked = 1, name = $2 where id = $1";
-    const updateResult = await conn.query(sqlU, [id, name]); // Again to avoid SQL INJECTION we are using $1 and $2 as placeholders
-
-    //end transaction by committing
+    const updateResult = await conn.query(
+      "UPDATE seats SET isbooked = 1, name = $2 WHERE id = $1",
+      [id, name]
+    );
     await conn.query("COMMIT");
-    conn.release(); // release the connection back to the pool (so we do not keep the connection open unnecessarily)
-    res.send(updateResult);
+    conn.release();
+    res.json({ message: `Seat ${id} booked for ${name}` });
   } catch (ex) {
     console.log(ex);
-    res.send(500);
+    res.status(500).send({ error: "Booking failed" });
   }
 });
 

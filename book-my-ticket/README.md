@@ -3,6 +3,15 @@
 docker compose up
 
 docker exec -it chai_sql_db psql -U postgres -d sql_book_my_show_db
+
+```
+```sql
+-- to see who are taken seat and how much
+SELECT * FROM seats ORDER BY id;
+-- to see user that has been registered 
+SELECT * FROM users;
+-- ! for set seats to default values
+UPDATE seats SET name = NULL, isbooked = 0;
 ```
 --- 
 # instructions
