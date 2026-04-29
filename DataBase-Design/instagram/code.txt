@@ -1,0 +1,89 @@
+title Instagram Thrift & Handmade Store ER Diagram
+notation crows-foot
+colorMode pastel
+ 
+ // ENTITIES
+customers [icon: user, color: blue] {
+  id string pk
+  instagram_handle string
+  first_name string
+  last_name string
+  email string
+  phone string
+  default_address text
+  created_at datetime
+}
+
+products [icon: package, color: orange] {
+  id string pk
+  name string
+  description text
+  product_type string // "thrifted" or "handmade"
+  category string
+  price decimal
+  size string
+  color string
+  condition string // e.g., "mint", "gently used", "new"
+  stock_quantity int // Thrift = 1, Handmade = N
+  is_active boolean
+  created_at datetime
+}
+
+orders [icon: shopping-cart, color: green] {
+  id string pk
+  customer_id string
+  order_date datetime
+  total_amount decimal
+  order_status string // "pending", "confirmed", "cancelled"
+}
+
+// Junction table to handle the Many-to-Many relationship 
+// between orders and products.
+order_items [icon: list, color: yellow] {
+  id string pk
+  order_id string
+  product_id string
+  quantity int
+  unit_price decimal // Price at the time of purchase
+  subtotal decimal
+}
+
+payments [icon: credit-card, color: purple] {
+  id string pk
+  order_id string
+  payment_method string // e.g., "UPI", "Bank Transfer"
+  transaction_id string
+  amount decimal
+  payment_date datetime
+  payment_status string // "pending", "completed", "failed"
+}
+
+shipping [icon: truck, color: red] {
+  id string pk
+  order_id string
+  courier_partner string
+  tracking_number string
+  shipping_address text
+  shipped_date datetime
+  estimated_delivery date
+  delivery_status string // "processing", "shipped", "delivered"
+}
+
+
+// RELATIONSHIPS
+
+// One Customer can have Many Orders
+customers.id < orders.customer_id
+
+// One Order can have Many Order Items
+orders.id < order_items.order_id
+
+// One Product can be part of Many Order Items 
+// (Handmade items can be sold across multiple orders)
+products.id < order_items.product_id
+
+// One Order has One Payment record
+orders.id - payments.order_id
+
+// One Order has One Shipping record
+orders.id - shipping.order_id 

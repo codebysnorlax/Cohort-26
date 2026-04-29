@@ -1,0 +1,109 @@
+title Online Fitness Coaching Platform ER Diagram
+notation crows-foot
+colorMode pastel
+
+// ENTITIES
+
+trainers [icon: user-plus, color: teal] {
+  id string pk
+  first_name string
+  last_name string
+  email string
+  specialty string // e.g., "Strength", "Nutrition"
+  is_active boolean
+}
+
+clients [icon: user, color: blue] {
+  id string pk
+  first_name string
+  last_name string
+  email string
+  phone string
+  fitness_goal text // e.g., "Weight loss", "Muscle gain"
+  joined_at datetime
+}
+
+plans [icon: folder, color: orange] {
+  id string pk
+  name string
+  description text
+  plan_type string // e.g., "routine_only", "full_coaching", "consultation"
+  duration_weeks int
+  price decimal
+  is_active boolean
+}
+
+// Subscriptions acts as the junction table for Clients and Plans
+// while tracking the lifecycle of the purchased program.
+subscriptions [icon: bookmark, color: green] {
+  id string pk
+  client_id string
+  plan_id string
+  trainer_id string // The specific trainer assigned for this plan
+  start_date date
+  end_date date
+  status string // "active", "completed", "cancelled"
+}
+
+// Sessions are for live video calls/consultations.
+sessions [icon: video, color: purple] {
+  id string pk
+  client_id string
+  trainer_id string
+  scheduled_at datetime
+  duration_minutes int
+  session_type string // "initial_consultation", "live_workout", "check_in_call"
+  status string // "scheduled", "completed", "no_show"
+  trainer_notes text
+}
+
+// Check-ins are asynchronous progress tracking submissions by the client.
+check_ins [icon: activity, color: pink] {
+  id string pk
+  client_id string
+  subscription_id string // Links progress to a specific active program
+  check_in_date date
+  weight_kg decimal
+  measurements_json text // Store body measurements
+  client_update text // How the client feels, adherence to diet/workout
+  trainer_feedback text // Coach's response/notes
+}
+
+payments [icon: credit-card, color: red] {
+  id string pk
+  client_id string
+  subscription_id string
+  amount decimal
+  payment_date datetime
+  payment_method string
+  status string // "successful", "pending", "failed"
+}
+
+// RELATIONSHIPS
+
+// One Trainer can be assigned to Many Subscriptions
+trainers.id < subscriptions.trainer_id
+
+// One Client can purchase Many Subscriptions over time
+clients.id < subscriptions.client_id
+
+// One Plan can be Subscribed to by Many Clients
+plans.id < subscriptions.plan_id
+
+// One Trainer can host Many Sessions
+trainers.id < sessions.trainer_id
+
+// One Client can attend Many Sessions
+clients.id < sessions.client_id
+
+// One Client submits Many Check-ins
+clients.id < check_ins.client_id
+
+// One Subscription can have Many Check-ins during its duration
+subscriptions.id < check_ins.subscription_id
+
+// One Client can make Many Payments
+clients.id < payments.client_id
+
+// One Subscription typically has One Payment (or multiple if installments, represented as Many-to-One here)
+subscriptions.id < payments.subscription_id

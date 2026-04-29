@@ -1,0 +1,127 @@
+title Smart Elevator Control ERD
+notation crows-foot
+colorMode pastel
+// Diagram properties
+title LiftGrid Systems ERD
+colorMode pastel
+styleMode shadow
+typeface clean
+notation crows-foot
+
+// Define entities
+BUILDING [icon: building, color: blue] {
+building_id INT pk
+name VARCHAR(150)
+address VARCHAR(255)
+total_floors INT
+}
+
+FLOOR [icon: layer, color: green] {
+floor_id INT pk
+building_id INT fk
+floor_level INT
+floor_label VARCHAR(50)
+}
+
+ELEVATOR_SHAFT [icon: column, color: yellow] {
+shaft_id INT pk
+building_id INT fk
+shaft_identifier VARCHAR(50)
+}
+
+ELEVATOR [icon: server, color: orange] {
+elevator_id INT pk
+shaft_id INT fk
+elevator_label VARCHAR(50)
+max_capacity_kg DECIMAL
+max_passengers INT
+}
+
+ELEVATOR_SERVED_FLOOR [icon: link, color: purple] {
+elevator_id INT fk
+floor_id INT fk
+}
+
+ELEVATOR_STATUS [icon: activity, color: red] {
+elevator_id INT pk
+current_floor_id INT fk
+movement_state VARCHAR(20)
+operational_state VARCHAR(20)
+last_updated TIMESTAMP
+}
+
+FLOOR_REQUEST [icon: bell, color: pink] {
+request_id UUID pk
+building_id INT fk
+source_floor_id INT fk
+direction VARCHAR(10)
+requested_at TIMESTAMP
+status VARCHAR(20)
+}
+
+RIDE_ASSIGNMENT [icon: check-circle, color: teal] {
+assignment_id UUID pk
+request_id UUID fk
+elevator_id INT fk
+assigned_at TIMESTAMP
+status VARCHAR(20)
+}
+
+RIDE_LOG [icon: archive, color: slate] {
+log_id UUID pk
+elevator_id INT fk
+assignment_id UUID fk
+start_floor_id INT fk
+end_floor_id INT fk
+start_time TIMESTAMP
+end_time TIMESTAMP
+trip_status VARCHAR(20)
+}
+
+MAINTENANCE_RECORD [icon: tool, color: gray] {
+maintenance_id UUID pk
+elevator_id INT fk
+start_time TIMESTAMP
+end_time TIMESTAMP
+maintenance_type VARCHAR(50)
+technician_name VARCHAR(100)
+notes TEXT
+}
+
+// Relationship properties (1-to-Many, 1-to-1)
+
+// A Building has many Floors, Shafts, and Requests
+BUILDING.building_id < FLOOR.building_id
+BUILDING.building_id < ELEVATOR_SHAFT.building_id
+BUILDING.building_id < FLOOR_REQUEST.building_id
+
+// A Shaft has exactly one Elevator
+ELEVATOR_SHAFT.shaft_id - ELEVATOR.shaft_id
+
+// Junction table: An Elevator serves many floors, and a Floor is served by many elevators
+ELEVATOR.elevator_id < ELEVATOR_SERVED_FLOOR.elevator_id
+FLOOR.floor_id < ELEVATOR_SERVED_FLOOR.floor_id
+
+// 1-to-1 relationship for dynamic status polling
+ELEVATOR.elevator_id - ELEVATOR_STATUS.elevator_id
+FLOOR.floor_id < ELEVATOR_STATUS.current_floor_id
+
+// A Floor generates many Requests
+FLOOR.floor_id < FLOOR_REQUEST.source_floor_id
+
+// A Request turns into 1 Assignment, handled by 1 Elevator
+FLOOR_REQUEST.request_id - RIDE_ASSIGNMENT.request_id
+ELEVATOR.elevator_id < RIDE_ASSIGNMENT.elevator_id
+
+// An Assignment gets archived into 1 Ride Log
+RIDE_ASSIGNMENT.assignment_id - RIDE_LOG.assignment_id
+
+// An Elevator completes many Ride Logs
+ELEVATOR.elevator_id < RIDE_LOG.elevator_id
+
+// Floors track where the log started and ended
+FLOOR.floor_id < RIDE_LOG.start_floor_id: [label: "started at"]
+FLOOR.floor_id < RIDE_LOG.end_floor_id: [label: "ended at"]
+
+// An Elevator undergoes many Maintenance Records
+ELEVATOR.elevator_id < MAINTENANCE_RECORD.elevator_id 

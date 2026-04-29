@@ -1,0 +1,112 @@
+title Comic-Con Parking System ERD
+notation crows-foot
+colorMode pastel
+
+owner [icon: user, color: purple]  {
+  owner_id UUID pk
+  full_name VARCHAR(225) not null
+  contact_number VARCHAR(20) unique not null
+  email VARCHAR(225) unique
+}
+
+vehicle [icon: car, color: orange]{
+  vehicle_id UUID pk
+  license_plate VARCHAR(20) unique not null
+  owner_id UUID fk
+  category_id INT fk
+}
+
+vehicle_category[icon: type, color: orange]{
+  category_id INT pk
+  category_name VARCHAR(50)  // eg: Bike, Car
+  base_rate_per_hour DECIMAL 
+}
+
+zone[icon: home, color: blue]{
+  zone_id INT pk
+  zone_name VARCHAR(100)  // eg: North Wing
+  total_capacity INT
+  is_active BOOLEAN
+}
+
+parking_spot[icon: home, color: blue]{
+  spot_id INT pk
+  spot_number VARCHAR(20) not null
+  zone_id INT fk
+  spot_category_id INT fk
+  allowed_vehicle_catagory_id INT fk
+  is_available BOOLEAN
+  has_ev_charger BOOLEAN
+}
+
+spot_category[icon: box, color: blue]{
+  spot_category_id int pk
+  category_name VARCHAR(50)  // vip, exhibitor, ev, cosplayer
+  requires_permit BOOLEAN
+}
+
+staff[icon: user, color: green]{
+  staff_id INT pk
+  full_name VARCHAR(255)
+  role VARCHAR(50)  // attendant, manager
+}
+
+parking_session[icon: timer, color: white]{
+  session_id UUID pk
+  vehicle_id UUID fk
+  spot_id INT fk
+  processed_by_staff_id INT fk
+  entry_time TIMESTAMP
+  exit_time TIMESTAMP
+  status VARCHAR(20)  // active, completed, overstayed
+}
+
+parking_ticket[icon: ticket, color: white]{
+  ticket_id UUID pk
+  ticket_number VARCHAR(50) unique not null
+  session_id UUID fk
+  issued_at TIMESTAMP
+  barcode_data VARCHAR(255) 
+}
+
+payment[icon: money, color: red]{
+  payment_id UUID pk
+  session_id UUID fk
+  base_amount DECIMAL
+  penalty_amount DECIMAL
+  total_amount DECIMAL
+  payment_method VARCHAR(20)  // card, upi, cash
+  transaction_ref VARCHAR(100)  unique
+  payment_status VARCHAR(50)  // pending, success, failed
+  payment_time TIMESTAMP
+}
+
+// Owner → Vehicle (1 to many)
+owner.owner_id < vehicle.owner_id
+
+// Vehicle → Category (many to one)
+vehicle.category_id > vehicle_category.category_id
+
+// Zone → Parking Spot (1 to many)
+zone.zone_id < parking_spot.zone_id
+
+// Spot Category → Parking Spot
+spot_category.spot_category_id < parking_spot.spot_category_id
+
+// Vehicle Category → Parking Spot (allowed type)
+vehicle_category.category_id < parking_spot.allowed_vehicle_category_id
+
+// Vehicle → Parking Session
+vehicle.vehicle_id < parking_session.vehicle_id
+
+// Parking Spot → Parking Session
+parking_spot.spot_id < parking_session.spot_id
+
+// Staff → Parking Session
+staff.staff_id < parking_session.processed_by_staff_id
+
+// Parking Session → Ticket (1 to 1)
+parking_session.session_id - parking_ticket.session_id
+
+// Parking Session → Payment (1 to 1 or 1 to many)
+parking_session.session_id < payment.session_id

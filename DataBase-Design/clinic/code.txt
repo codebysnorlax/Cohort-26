@@ -1,0 +1,119 @@
+title Clinic Appointment & Diagnostics ERD
+notation crows-foot
+colorMode pastel
+
+// ENTITIES
+
+patients [icon: user, color: blue] {
+  id string pk
+  first_name string
+  last_name string
+  dob date
+  gender string
+  phone string
+  address text
+  created_at datetime
+}
+
+// Separated Specialty/Department into its own entity for better normalization
+departments [icon: folder, color: teal] {
+  id string pk
+  name string
+  description text
+}
+
+doctors [icon: user-plus, color: teal] {
+  id string pk
+  department_id string
+  first_name string
+  last_name string
+  contact_number string
+  consultation_fee decimal
+}
+
+// Appointment represents the BOOKING aspect
+appointments [icon: calendar, color: green] {
+  id string pk
+  patient_id string
+  doctor_id string
+  appointment_date datetime
+  status string // "scheduled", "cancelled", "completed", "no_show"
+}
+
+// Consultation represents the ACTUAL VISIT and clinical notes
+consultations [icon: user-check, color: purple] {
+  id string pk
+  appointment_id string
+  visit_date datetime
+  symptoms text
+  diagnosis text
+  doctor_notes text
+}
+
+// The catalog of available tests
+diagnostic_tests [icon: activity, color: orange] {
+  id string pk
+  test_name string
+  category string // e.g., "Radiology", "Pathology"
+  base_price decimal
+}
+
+// Junction table: Tests prescribed DURING a specific consultation
+prescribed_tests [icon: list, color: yellow] {
+  id string pk
+  consultation_id string
+  test_id string
+  status string // "pending", "sample_collected", "completed"
+}
+
+// The actual report generated for a prescribed test
+diagnostic_reports [icon: file, color: pink] {
+  id string pk
+  prescribed_test_id string
+  report_date datetime
+  result_summary text
+  detailed_report_url string
+  generated_by string
+}
+
+payments [icon: credit-card, color: red] {
+  id string pk
+  patient_id string
+  consultation_id string // Ties the bill to the specific visit (includes consultation fee + test fees)
+  total_amount decimal
+  payment_status string // "unpaid", "paid"
+  payment_date datetime
+}
+
+// RELATIONSHIPS
+
+// Department to Doctors (1-to-Many)
+departments.id < doctors.department_id
+
+// Patient to Appointments (1-to-Many)
+patients.id < appointments.patient_id
+
+// Doctor to Appointments (1-to-Many)
+doctors.id < appointments.doctor_id
+
+// Appointment to Consultation (1-to-1)
+// An appointment results in a maximum of ONE actual consultation.
+appointments.id - consultations.appointment_id
+
+// Consultation to Prescribed Tests (1-to-Many)
+// A single doctor visit can result in multiple lab tests being prescribed.
+consultations.id < prescribed_tests.consultation_id
+
+// Diagnostic Test to Prescribed Tests (1-to-Many)
+diagnostic_tests.id < prescribed_tests.test_id
+
+// Prescribed Test to Diagnostic Report (1-to-1)
+// Every test order generates exactly one report.
+prescribed_tests.id - diagnostic_reports.prescribed_test_id
+
+// Patient to Payments (1-to-Many)
+patients.id < payments.patient_id
+
+// Consultation to Payment (1-to-Many)
+// Assuming one consultation visit generates a combined bill/payment.
+consultations.id < payments.consultation_id  
