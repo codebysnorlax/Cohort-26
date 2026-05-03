@@ -1,3 +1,7 @@
+## Live Demo URL
+
+https://reactauthenticationapp.netlify.app/
+
 On load, App checks GET /current-user (with credentials: include for cookies) — shows a spinner while checking
 
 If a session exists → goes straight to Profile
@@ -17,6 +21,3 @@ Logout calls the API and returns to Login
 - Loading states on all async actions
 - Clean Tailwind UI
 
-## Live Demo URL
-
-https://reactauthenticationapp.netlify.app/

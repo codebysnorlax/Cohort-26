@@ -4,18 +4,20 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
 import ApiInfo from './components/ApiInfo'
+import Footer from './components/Footer'
 
 function Layout({ children }) {
   return (
-    <div className="min-h-screen flex bg-gray-50">
-      {/* Left panel */}
-      <aside className="hidden md:flex w-80 shrink-0 bg-white border-r border-gray-100 p-6 overflow-y-auto">
-        <ApiInfo />
-      </aside>
-      {/* Right content */}
-      <main className="flex-1 flex items-center justify-center p-6">
-        {children}
-      </main>
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <div className="flex flex-1">
+        <aside className="hidden md:flex w-80 shrink-0 bg-white border-r border-gray-100 p-6 overflow-y-auto">
+          <ApiInfo />
+        </aside>
+        <main className="flex-1 flex items-center justify-center p-6">
+          {children}
+        </main>
+      </div>
+      <Footer />
     </div>
   )
 }
